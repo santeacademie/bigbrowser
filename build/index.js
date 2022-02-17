@@ -1,10 +1,12 @@
 // ==UserScript==
 // @name         @santeacademie/bigbrowser
 // @namespace    http://tampermonkey.net/
-// @version      2.0
+// @version      2.1
 // @description  Better browser for your own good
 // @source       https://github.com/santeacademie/bigbrowser
 // @author       JRK (https://github.com/jr-k)
+// @downloadURL  https://raw.githubusercontent.com/santeacademie/bigbrowser/master/build/index.js
+// @updateURL    https://raw.githubusercontent.com/santeacademie/bigbrowser/master/build/index.js
 // @match        https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo/related?hl=fr
 // @icon         https://assets.website-files.com/5fa997afa489c5171404c70c/60f7e0104650f1a66201de1d_favicon-32.png
 // @include      http*://*
