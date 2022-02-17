@@ -7,7 +7,7 @@
 // @include      http*://*
 // ==/UserScript==
 /*
- * @santeacademie/bigbrowser v1.0.0
+ * @santeacademie/bigbrowser v1.0.1
  * https://github.com/santeacademie/bigbrowser
  *
  * Copyright (c) JRK (https://github.com/jr-k) and project contributors.
