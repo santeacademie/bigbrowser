@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         @santeacademie/bigbrowser
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  BigBrowser
 // @author       santeacademie
 // @match        https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo/related?hl=fr
