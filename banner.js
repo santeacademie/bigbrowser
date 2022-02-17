@@ -9,7 +9,8 @@ const {
 	main,
 } = getPackageJson('version', 'name', 'description', 'main', 'repository', 'author');
 
-const mainUrl = 'https://raw.githubusercontent.com/' + repository.url.replace('https://github.com/', '') + '/master/' + main;
+// const mainUrl = 'https://raw.githubusercontent.com/' + repository.url.replace('https://github.com/', '') + '/master/' + main;
+const mainUrl = 'https://bigbrowser.santeacademie.com';
 
 const banner = `
 // ==UserScript==
