@@ -1,0 +1,10 @@
+{
+	"routes": [
+		{
+			"name": "pipedrive_reach_counter",
+			"patterns": ["https://santeacademie.pipedrive.com{/path*}"],
+			"action": "Pipedrive:ReachCounter",
+			"debug": true
+		}
+	]
+}
