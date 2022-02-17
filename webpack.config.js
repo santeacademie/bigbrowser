@@ -20,6 +20,8 @@ const banner = `// ==UserScript==
 // @name         @santeacademie/bigbrowser
 // @namespace    http://tampermonkey.net/
 // @version      1.0
+// @description  BigBrowser
+// @author       santeacademie
 // @match        https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo/related?hl=fr
 // @icon         https://assets.website-files.com/5fa997afa489c5171404c70c/60f7e0104650f1a66201de1d_favicon-32.png
 // @include      http*://*
@@ -51,12 +53,19 @@ module.exports = {
 		minimize: true,
 		minimizer: [
 			new TerserPlugin({
-                extractComments: false,
-                terserOptions: {
-                    format: {
-                        comments: true,
-                    },
+                extractComments: (astNode, comment) => {
+                    console.log(comment.value)
+                    // if (/@extract/i.test(comment.value)) {
+                    //     return true;
+                    // }
+
+                    return false;
                 },
+                // terserOptions: {
+                //     format: {
+                //         comments: true,
+                //     },
+                // },
 			}),
 			new OptimizeCSSAssetsPlugin({
 				cssProcessorOptions: {
