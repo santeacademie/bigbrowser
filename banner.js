@@ -3,10 +3,10 @@ const getPackageJson = require('./scripts/getPackageJson');
 const {
 	version,
 	name,
-    repository,
-    description,
+	repository,
+	description,
 	author,
-    main,
+	main,
 } = getPackageJson('version', 'name', 'description', 'main', 'repository', 'author');
 
 const mainUrl = 'https://raw.githubusercontent.com/' + repository.url.replace('https://github.com/', '') + '/master/' + main;
