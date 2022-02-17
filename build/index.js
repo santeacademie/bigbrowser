@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         @santeacademie/bigbrowser
 // @namespace    http://tampermonkey.net/
-// @version      1.0.3
+// @version      1.2.1
 // @author       JRK (https://github.com/jr-k)
 // @match        https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo/related?hl=fr
 // @icon         https://assets.website-files.com/5fa997afa489c5171404c70c/60f7e0104650f1a66201de1d_favicon-32.png
