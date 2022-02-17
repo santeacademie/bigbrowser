@@ -27,7 +27,6 @@ class TamperRouter {
 
 	_checkRoute = (name: string, patterns: string[], action: string, debug: boolean): void => {
 		const url = document.location.href;
-		// const url = 'https://santeacademie.pipedrive.com';
 		let resolvedRouter: Result = undefined;
 
 		for (let r = 0; r < patterns.length; r++) {
