@@ -7,18 +7,9 @@ class ReachCounter extends TamperController {
 	hashTryReachField = 'a9a1a17c4397010006c2aa550dca0cab13ed3419';
 
 	run = (request: TamperRequest): void => {
-		this._injectScript();
-
 		setTimeout(() => {
 			this._launchTryReach();
 		}, 3500);
-	};
-
-	_injectScript = (): void => {
-		const script = document.createElement('script');
-		script.setAttribute('src', 'https://code.jquery.com/jquery.js');
-		document.getElementsByTagName('body')[0].appendChild(script);
-		void script;
 	};
 
 	_grabFieldKey = (): string | undefined => {
@@ -43,7 +34,6 @@ class ReachCounter extends TamperController {
 			}
 		});
 
-		console.debug('NO FIELD');
 		return foundField;
 	};
 
@@ -81,7 +71,6 @@ class ReachCounter extends TamperController {
 	};
 
 	_addButtonToPopover = (): void => {
-		console.debug('POPOVER');
 		const $item: any = $('.changeFieldValue.' + this.hashTryReachField + ' .item');
 		$item.find('.valueWrap').prepend(`
 		        <div style="display:flex;justify-content:space-between;margin-bottom:3px;">

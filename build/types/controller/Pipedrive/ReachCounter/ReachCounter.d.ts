@@ -4,7 +4,6 @@ declare class ReachCounter extends TamperController {
     loaded: boolean;
     hashTryReachField: string;
     run: (request: TamperRequest) => void;
-    _injectScript: () => void;
     _grabFieldKey: () => string | undefined;
     _launchTryReach: () => void;
     _addButtonToPopover: () => void;
