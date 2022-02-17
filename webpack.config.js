@@ -1,42 +1,23 @@
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 const PrettierPlugin = require("prettier-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
-const getPackageJson = require('./scripts/getPackageJson');
+// const getPackageJson = require('./scripts/getPackageJson');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-// const BannerPlugin = require('./plugins/BannerPlugin');
-// const BannerAfterMinimizePlugin = require('./plugins/BannerAfterMinimizePlugin');
 
-const {
-	version,
-	name,
-	license,
-	repository,
-	author,
-} = getPackageJson('version', 'name', 'license', 'repository', 'author');
+// const {
+// 	version,
+// 	name,
+// 	license,
+// 	repository,
+// 	author,
+// } = getPackageJson('version', 'name', 'license', 'repository', 'author');
 
-const banner = `// ==UserScript==
-// @name         @santeacademie/bigbrowser
-// @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  BigBrowser
-// @author       santeacademie
-// @match        https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo/related?hl=fr
-// @icon         https://assets.website-files.com/5fa997afa489c5171404c70c/60f7e0104650f1a66201de1d_favicon-32.png
-// @include      http*://*
-// ==/UserScript==
+const banner = fs.readFileSync('./banner.txt', {encoding:'utf8', flag:'r'});
 
-/*
- * ${name} v${version}
- * ${repository.url}
- *
- * Copyright (c) ${author.replace(/ *<[^)]*> */g, " ")} and project contributors.
- * 
- * This source code is licensed under the ${license} license found in the
- * LICENSE file in the root directory of this source tree.
- */
-`;
+
 
 module.exports = {
 	mode: "production",
@@ -53,19 +34,21 @@ module.exports = {
 		minimize: true,
 		minimizer: [
 			new TerserPlugin({
-                extractComments: (astNode, comment) => {
-                    console.log(comment.value)
-                    // if (/@extract/i.test(comment.value)) {
-                    //     return true;
-                    // }
+                extractComments: false,
+                terserOptions: {
+                    format: {
+                        comments: (astNode, comment) => {
+                            const fs = require('fs');
+                            const banner = fs.readFileSync('./banner.txt', {encoding:'utf8', flag:'r'});
+                            const bannerLines = banner.split("\n").map((line) => {
+                                return line.replace('// ', '').trim();
+                            });
+                            const currentValue = comment.value.trim();
 
-                    return false;
+                            return (bannerLines.includes(currentValue));
+                        },
+                    },
                 },
-                // terserOptions: {
-                //     format: {
-                //         comments: true,
-                //     },
-                // },
 			}),
 			new OptimizeCSSAssetsPlugin({
 				cssProcessorOptions: {
@@ -103,17 +86,7 @@ module.exports = {
             banner: banner,
             raw: true,
             entryOnly: false
-        }),
-        // new BannerAfterMinimizePlugin({
-        //     banner: 'mdr',
-        //     raw: true,
-        //     entryOnly: false
-        // }),
-        // new BannerPlugin({
-        //     banner: 'mdr',
-        //     raw: true,
-        //     entryOnly: false
-        // })
+        })
 	],
 	resolve: {
 		extensions: ['.ts', '.js', '.json']
