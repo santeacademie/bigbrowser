@@ -1,7 +1,7 @@
 import TamperController from '../../TamperController';
 import TamperRequest from '../../../core/router/TamperRequest';
 
-const jQuery: any = null;
+let jQuery: any = null;
 
 class ReachCounter extends TamperController {
 	loaded = false;
@@ -20,6 +20,7 @@ class ReachCounter extends TamperController {
 		script.setAttribute('src', 'https://code.jquery.com/jquery.js');
 		document.getElementsByTagName('body')[0].appendChild(script);
 		void script;
+		console.log(script);
 	};
 
 	launchTryReach = (): void => {
@@ -29,6 +30,9 @@ class ReachCounter extends TamperController {
 
 		this.loaded = true;
 
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		jQuery = window.jQuery;
 		const $body: any = jQuery('body');
 
 		$body.on('click', 'td[data-field="' + this.hashTryReachField + '"].gridRow__cell:not(".gridRow__cell--editing") button', () => {
