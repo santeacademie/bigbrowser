@@ -1,21 +1,9 @@
 const path = require('path');
-const fs = require('fs');
 const webpack = require('webpack');
 const PrettierPlugin = require("prettier-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
-// const getPackageJson = require('./scripts/getPackageJson');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-
-// const {
-// 	version,
-// 	name,
-// 	license,
-// 	repository,
-// 	author,
-// } = getPackageJson('version', 'name', 'license', 'repository', 'author');
-
-const banner = fs.readFileSync('./banner.txt', {encoding:'utf8', flag:'r'});
 
 module.exports = {
 	mode: "production",
@@ -36,8 +24,8 @@ module.exports = {
                 terserOptions: {
                     format: {
                         comments: (astNode, comment) => {
-                            const fs = require('fs');
-                            const banner = fs.readFileSync('./banner.txt', {encoding:'utf8', flag:'r'});
+                            const path = require('path');
+                            const banner = require(path.resolve(process.env.PWD, 'banner.js'));
                             const bannerLines = banner.split("\n").map((line) => {
                                 return line.replace('// ', '').trim();
                             });
@@ -81,7 +69,7 @@ module.exports = {
 			filename: 'css/index.css'
 		}),
 		new webpack.BannerPlugin({
-            banner: banner,
+            banner: require('./banner'),
             raw: true,
             entryOnly: false
         })
