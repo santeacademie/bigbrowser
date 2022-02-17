@@ -27,6 +27,7 @@
 		"@babel/polyfill": "^7.12.1",
 		"@babel/preset-env": "^7.16.11",
 		"@types/jest": "^27.4.0",
+		"@types/jquery": "^3.5.13",
 		"@typescript-eslint/eslint-plugin": "^4.32.0",
 		"@typescript-eslint/parser": "^4.33.0",
 		"babel-eslint": "^10.1.0",
@@ -68,6 +69,7 @@
 		]
 	},
 	"dependencies": {
+		"jquery": "^3.6.0",
 		"uri-template-router": "^0.0.12"
 	}
 }

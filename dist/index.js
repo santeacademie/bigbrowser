@@ -73,6 +73,7 @@ var ReachCounter = /*#__PURE__*/function (_TamperController) {
       script.setAttribute('src', 'https://code.jquery.com/jquery.js');
       document.getElementsByTagName('body')[0].appendChild(script);
       void script;
+      console.log(script);
     });
 
     _defineProperty(_assertThisInitialized(_this), "launchTryReach", function () {
@@ -80,7 +81,10 @@ var ReachCounter = /*#__PURE__*/function (_TamperController) {
         return;
       }
 
-      _this.loaded = true;
+      _this.loaded = true; // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+
+      jQuery = window.jQuery;
       var $body = jQuery('body');
       $body.on('click', 'td[data-field="' + _this.hashTryReachField + '"].gridRow__cell:not(".gridRow__cell--editing") button', function () {
         setTimeout(function () {
@@ -371,8 +375,7 @@ var TamperRouter = /*#__PURE__*/_createClass(function TamperRouter() {
   });
 
   _defineProperty(this, "_checkRoute", function (name, patterns, action, debug) {
-    var url = document.location.href; // const url = 'https://santeacademie.pipedrive.com';
-
+    var url = document.location.href;
     var resolvedRouter = undefined;
 
     for (var r = 0; r < patterns.length; r++) {
@@ -1210,7 +1213,7 @@ module.exports = webpackAsyncContext;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"routes":[{"name":"pipedrive_reach_counter","patterns":["https://santeacademie.pipedrive.com{/path*}"],"action":"Pipedrive:ReachCounter","debug":true}]}');
+module.exports = JSON.parse('{"routes":[{"name":"pipedrive_reach_counter","patterns":["https://santeacademie.pipedrive.com{/path*}"],"action":"Pipedrive:ReachCounter","debug":false}]}');
 
 /***/ })
 

@@ -17,8 +17,6 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const banner = fs.readFileSync('./banner.txt', {encoding:'utf8', flag:'r'});
 
-
-
 module.exports = {
 	mode: "production",
 	devtool: 'source-map',

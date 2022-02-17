@@ -1,7 +1,6 @@
 import TamperController from '../../TamperController';
 import TamperRequest from '../../../core/router/TamperRequest';
-
-let jQuery: any = null;
+import $ from 'jquery';
 
 class ReachCounter extends TamperController {
 	loaded = false;
@@ -11,8 +10,8 @@ class ReachCounter extends TamperController {
 		this._injectScript();
 
 		setTimeout(() => {
-			this.launchTryReach();
-		}, 500);
+			this._launchTryReach();
+		}, 3500);
 	};
 
 	_injectScript = (): void => {
@@ -20,36 +19,70 @@ class ReachCounter extends TamperController {
 		script.setAttribute('src', 'https://code.jquery.com/jquery.js');
 		document.getElementsByTagName('body')[0].appendChild(script);
 		void script;
-		console.log(script);
 	};
 
-	launchTryReach = (): void => {
+	_grabFieldKey = (): string | undefined => {
+		let foundField: string | undefined = undefined;
+
+		$('.gridHeader__cell').each((index: number, element: HTMLInputElement) => {
+			if (foundField) {
+				return;
+			}
+
+			if (
+				$(element)
+					.text()
+					.trim()
+					.match(/^tentative/i)
+			) {
+				const field = $(element).data().field;
+
+				if (field.indexOf('.') < 0) {
+					foundField = field;
+				}
+			}
+		});
+
+		console.debug('NO FIELD');
+		return foundField;
+	};
+
+	_launchTryReach = (): void => {
 		if (this.loaded === true) {
 			return;
 		}
 
 		this.loaded = true;
 
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		jQuery = window.jQuery;
-		const $body: any = jQuery('body');
+		const $body: any = $('body');
 
-		$body.on('click', 'td[data-field="' + this.hashTryReachField + '"].gridRow__cell:not(".gridRow__cell--editing") button', () => {
-			setTimeout(() => {
-				this.addButtonToPopover();
-			}, 200);
+		this.hashTryReachField = this._grabFieldKey() ?? this.hashTryReachField;
+
+		$body.on('click', 'td.gridRow__cell:not(".gridRow__cell--editing") button', (event: JQuery.ClickEvent) => {
+			const $this = $(event.target);
+			this.hashTryReachField = this._grabFieldKey();
+
+			if ($this.parents('td:eq(0)').data('field') == this.hashTryReachField) {
+				setTimeout(() => {
+					this._addButtonToPopover();
+				}, 1000);
+			}
 		});
-		$body.on('click', '.sub-one-tryreach', () => {
-			this.subOneTryReach(jQuery(this).closest('.item'));
+		$body.on('click', '.sub-one-tryreach', (event: JQuery.ClickEvent) => {
+			const $this = $(event.target);
+
+			this._subOneTryReach($this.closest('.item'));
 		});
-		$body.on('click', '.add-one-tryreach', () => {
-			this.addOneTryReach(jQuery(this).closest('.item'));
+		$body.on('click', '.add-one-tryreach', (event: JQuery.ClickEvent) => {
+			const $this = $(event.target);
+
+			this._addOneTryReach($this.closest('.item'));
 		});
 	};
 
-	addButtonToPopover = (): void => {
-		const $item: any = jQuery('.changeFieldValue.' + this.hashTryReachField + ' .item');
+	_addButtonToPopover = (): void => {
+		console.debug('POPOVER');
+		const $item: any = $('.changeFieldValue.' + this.hashTryReachField + ' .item');
 		$item.find('.valueWrap').prepend(`
 		        <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
 		            <button style="padding:5px 10px;cursor: pointer;" class="sub-one-tryreach">-1</button>
@@ -60,7 +93,7 @@ class ReachCounter extends TamperController {
 		$item.find('select').removeClass('select2-offscreen');
 	};
 
-	subOneTryReach = ($item: any): void => {
+	_subOneTryReach = ($item: any): void => {
 		const $select: any = $item.find('select[name="' + this.hashTryReachField + '"]');
 		const index: any = $select.prop('selectedIndex');
 
@@ -71,7 +104,7 @@ class ReachCounter extends TamperController {
 		$select.trigger('change');
 	};
 
-	addOneTryReach = ($item: any): void => {
+	_addOneTryReach = ($item: any): void => {
 		const $select: any = $item.find('select[name="' + this.hashTryReachField + '"]');
 		const index: any = $select.prop('selectedIndex');
 
