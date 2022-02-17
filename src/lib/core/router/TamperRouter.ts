@@ -40,11 +40,11 @@ class TamperRouter {
 
 		if (resolvedRouter || debug) {
 			const [controllerDirectory, controllerName] = action.split(':');
-			this._instanciateController(controllerDirectory, controllerName, new TamperRequest(resolvedRouter));
+			this._instantiateController(controllerDirectory, controllerName, new TamperRequest(resolvedRouter));
 		}
 	};
 
-	_instanciateController = (directory: string, name: string, request: TamperRequest): void => {
+	_instantiateController = (directory: string, name: string, request: TamperRequest): void => {
 		import(/* webpackMode: "eager" */ `../../controller/${directory}/${name}/${name}`).then((module) => {
 			const instance: TamperController = new module.default();
 			const parent: string = Object.getPrototypeOf(Object.getPrototypeOf(instance)).constructor.name;

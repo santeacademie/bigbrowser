@@ -10,6 +10,6 @@ declare class TamperRouter {
     constructor();
     init: () => void;
     _checkRoute: (name: string, patterns: string[], action: string, debug: boolean) => void;
-    _instanciateController: (directory: string, name: string, request: TamperRequest) => void;
+    _instantiateController: (directory: string, name: string, request: TamperRequest) => void;
 }
 export default TamperRouter;
