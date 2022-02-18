@@ -1,5 +1,5 @@
 import routes from '../../config/routes.json';
-import TamperController from '../../controller/TamperController';
+import TamperController from '../controller/TamperController';
 import {Router, Result} from 'uri-template-router';
 import TamperRequest from './TamperRequest';
 
