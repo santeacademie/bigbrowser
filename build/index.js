@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         @santeacademie/bigbrowser
 // @namespace    http://tampermonkey.net/
-// @version      2.5
+// @version      2.6
 // @description  Better browser for your own good
 // @source       https://github.com/santeacademie/bigbrowser
 // @author       JRK (https://github.com/jr-k)
