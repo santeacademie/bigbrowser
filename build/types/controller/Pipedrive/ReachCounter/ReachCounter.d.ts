@@ -1,4 +1,4 @@
-import TamperController from '../../TamperController';
+import TamperController from '../../../core/controller/TamperController';
 import TamperRequest from '../../../core/router/TamperRequest';
 declare class ReachCounter extends TamperController {
     loaded: boolean;
