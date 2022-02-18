@@ -1,4 +1,4 @@
-import TamperRequest from '../router/TamperRequest';
+import TamperRequest from '@core/router/TamperRequest';
 
 abstract class TamperController {
 	constructor() {}

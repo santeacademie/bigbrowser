@@ -11,6 +11,12 @@
         "declaration": true,
         "emitDeclarationOnly": true,
         "suppressImplicitAnyIndexErrors": true,
+        "baseUrl": "src/lib",
+        "paths": {
+          "@config/*": ["config/*"],
+          "@controller/*": ["controller/*"],
+          "@core/*": ["core/*"]
+        },
         "lib": [
             "es2018",
             "dom"

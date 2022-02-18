@@ -1,6 +1,7 @@
-import TamperController from '../../../core/controller/TamperController';
-import TamperRequest from '../../../core/router/TamperRequest';
 import $ from 'jquery';
+
+import TamperController from '@core/controller/TamperController';
+import TamperRequest from '@core/router/TamperRequest';
 
 class ReachCounter extends TamperController {
 	loaded = false;
