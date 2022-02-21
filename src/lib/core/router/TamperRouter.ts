@@ -1,8 +1,8 @@
-import {Router, Result} from 'uri-template-router';
+import {Router} from 'uri-template-router';
 
-import routes from '@config/routes.json';
-import TamperController from '@core/controller/TamperController';
-import TamperRequest from '@core/router/TamperRequest';
+import routes from 'config/routes.json';
+import TamperController from 'core/controller/TamperController';
+import TamperRequest from 'core/router/TamperRequest';
 
 type TamperControllers = {
 	[key: string]: TamperController;

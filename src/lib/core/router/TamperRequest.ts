@@ -1,5 +1,3 @@
-import {Router, Result, Route} from 'uri-template-router';
-
 class TamperRequest {
 	routeName: string;
 	params: any;

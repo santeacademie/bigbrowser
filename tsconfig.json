@@ -15,26 +15,12 @@
 		"suppressImplicitAnyIndexErrors": true,
 		"baseUrl": "src/lib",
 		"paths": {
-			"@config/*": [
-				"config/*"
-			],
-			"@controller/*": [
-				"controller/*"
-			],
-			"@core/*": [
-				"core/*"
-			]
+			"config/*": ["config/*"],
+			"controller/*": ["controller/*"],
+			"core/*": ["core/*"]
 		},
-		"lib": [
-			"es2018",
-			"dom"
-		]
+		"lib": ["dom", "es2019"]
 	},
-	"include": [
-		"src/lib",
-		"ts_modules/*.d.ts"
-	],
-	"exclude": [
-		"src/lib/**/tests"
-	]
+	"include": ["src/lib/*", "ts_modules/*.d.ts"],
+	"exclude": ["src/lib/**/tests"]
 }

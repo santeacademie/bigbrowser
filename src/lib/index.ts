@@ -1,4 +1,4 @@
-import TamperRouter from '@core/router/TamperRouter';
+import TamperRouter from 'core/router/TamperRouter';
 
 class App {
 	router: TamperRouter;

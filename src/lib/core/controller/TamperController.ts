@@ -1,4 +1,5 @@
-import TamperRequest from '@core/router/TamperRequest';
+/* eslint-disable no-unused-vars */
+import TamperRequest from 'core/router/TamperRequest';
 
 abstract class TamperController {
 	constructor() {}
