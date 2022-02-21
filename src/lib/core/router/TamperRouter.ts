@@ -28,7 +28,7 @@ class TamperRouter {
 
 	_checkRoute = (name: string, patterns: string[], action: string, debug: boolean): void => {
 		const url = document.location.href;
-		let resolvedRouter: Result = undefined;
+		let resolvedRouter: Result | undefined = undefined;
 
 		for (let r = 0; r < patterns.length; r++) {
 			this.router.addTemplate(patterns[r], {}, name);

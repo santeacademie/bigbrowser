@@ -16,7 +16,7 @@ class ReachCounter extends TamperController {
 	_grabFieldKey = (): string | undefined => {
 		let foundField: string | undefined = undefined;
 
-		$('.gridHeader__cell').each((index: number, element: HTMLInputElement) => {
+		$('.gridHeader__cell').each((index: number, element: HTMLElement) => {
 			if (foundField) {
 				return;
 			}
@@ -51,7 +51,7 @@ class ReachCounter extends TamperController {
 
 		$body.on('click', 'td.gridRow__cell:not(".gridRow__cell--editing") button', (event: JQuery.ClickEvent) => {
 			const $this = $(event.target);
-			this.hashTryReachField = this._grabFieldKey();
+			this.hashTryReachField = this._grabFieldKey() ?? '';
 
 			if ($this.parents('td:eq(0)').data('field') == this.hashTryReachField) {
 				setTimeout(() => {

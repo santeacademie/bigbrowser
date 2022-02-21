@@ -5,8 +5,8 @@ class TamperRequest {
 	params: any;
 	uri: string;
 	uriTemplate: string;
-	route: Route;
-	router: Router;
+	route: Route | null;
+	router: Router | null;
 
 	constructor(result?: Result) {
 		this.routeName = result?.matchValue || '';
