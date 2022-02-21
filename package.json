@@ -1,6 +1,6 @@
 {
 	"name": "@santeacademie/bigbrowser",
-	"version": "2.6",
+	"version": "2.7",
 	"description": "Better browser for your own good",
 	"main": "build/index.js",
 	"types": "build/types/index.d.ts",

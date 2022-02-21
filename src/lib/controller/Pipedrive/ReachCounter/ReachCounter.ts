@@ -5,7 +5,7 @@ import TamperRequest from '@core/router/TamperRequest';
 
 class ReachCounter extends TamperController {
 	loaded = false;
-	hashTryReachField = 'a9a1a17c4397010006c2aa550dca0cab13ed3419';
+	focusedFieldKey: string | undefined = undefined;
 
 	run = (request: TamperRequest): void => {
 		setTimeout(() => {
@@ -13,7 +13,7 @@ class ReachCounter extends TamperController {
 		}, 3500);
 	};
 
-	_grabFieldKey = (): string | undefined => {
+	_grabFieldKey = (regexField: RegExp, searchFieldKey: string): string | undefined => {
 		let foundField: string | undefined = undefined;
 
 		$('.gridHeader__cell').each((index: number, element: HTMLElement) => {
@@ -21,16 +21,12 @@ class ReachCounter extends TamperController {
 				return;
 			}
 
-			if (
-				$(element)
-					.text()
-					.trim()
-					.match(/^tentative/i)
-			) {
+			if ($(element).text().trim().match(regexField)) {
 				const field = $(element).data().field;
+				const fieldKey = field.split('.')[0];
 
-				if (field.indexOf('.') < 0) {
-					foundField = field;
+				if (fieldKey == searchFieldKey) {
+					foundField = fieldKey;
 				}
 			}
 		});
@@ -47,13 +43,11 @@ class ReachCounter extends TamperController {
 
 		const $body: any = $('body');
 
-		this.hashTryReachField = this._grabFieldKey() ?? this.hashTryReachField;
-
 		$body.on('click', 'td.gridRow__cell:not(".gridRow__cell--editing") button', (event: JQuery.ClickEvent) => {
 			const $this = $(event.target);
-			this.hashTryReachField = this._grabFieldKey() ?? '';
+			this.focusedFieldKey = this._grabFieldKey(/^tentative/i, $this.parents('td:eq(0)').data('field'));
 
-			if ($this.parents('td:eq(0)').data('field') == this.hashTryReachField) {
+			if (this.focusedFieldKey) {
 				setTimeout(() => {
 					this._addButtonToPopover();
 				}, 1000);
@@ -72,7 +66,7 @@ class ReachCounter extends TamperController {
 	};
 
 	_addButtonToPopover = (): void => {
-		const $item: any = $('.changeFieldValue.' + this.hashTryReachField + ' .item');
+		const $item: any = $('.changeFieldValue.' + this.focusedFieldKey + ' .item');
 		$item.find('.valueWrap').prepend(`
 		        <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
 		            <button style="padding:5px 10px;cursor: pointer;" class="sub-one-tryreach">-1</button>
@@ -84,7 +78,7 @@ class ReachCounter extends TamperController {
 	};
 
 	_subOneTryReach = ($item: any): void => {
-		const $select: any = $item.find('select[name="' + this.hashTryReachField + '"]');
+		const $select: any = $item.find('select[name="' + this.focusedFieldKey + '"]');
 		const index: any = $select.prop('selectedIndex');
 
 		if (index > 1) {
@@ -95,7 +89,7 @@ class ReachCounter extends TamperController {
 	};
 
 	_addOneTryReach = ($item: any): void => {
-		const $select: any = $item.find('select[name="' + this.hashTryReachField + '"]');
+		const $select: any = $item.find('select[name="' + this.focusedFieldKey + '"]');
 		const index: any = $select.prop('selectedIndex');
 
 		if (index < $select.find('option').length - 1) {
