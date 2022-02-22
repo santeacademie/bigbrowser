@@ -1,7 +1,8 @@
-import routes from '../../config/routes.json';
-import TamperController from '../controller/TamperController';
-import {Router, Result} from 'uri-template-router';
-import TamperRequest from './TamperRequest';
+import {Router} from 'uri-template-router';
+
+import routes from 'config/routes.json';
+import TamperController from 'core/controller/TamperController';
+import TamperRequest from 'core/router/TamperRequest';
 
 type TamperControllers = {
 	[key: string]: TamperController;
@@ -27,7 +28,7 @@ class TamperRouter {
 
 	_checkRoute = (name: string, patterns: string[], action: string, debug: boolean): void => {
 		const url = document.location.href;
-		let resolvedRouter: Result = undefined;
+		let resolvedRouter: Result | undefined = undefined;
 
 		for (let r = 0; r < patterns.length; r++) {
 			this.router.addTemplate(patterns[r], {}, name);

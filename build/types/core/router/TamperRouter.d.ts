@@ -1,5 +1,5 @@
-import TamperController from '../controller/TamperController';
-import TamperRequest from './TamperRequest';
+import TamperController from 'core/controller/TamperController';
+import TamperRequest from 'core/router/TamperRequest';
 declare type TamperControllers = {
     [key: string]: TamperController;
 };

@@ -1,27 +1,26 @@
 {
-    "compilerOptions": {
-        "noImplicitAny": true,
-        "outDir": "build/types",
-        "module": "esnext",
-        "target": "es5",
-        "allowJs": true,
-        "resolveJsonModule": true,
-        "esModuleInterop": true,
-        "sourceMap": true,
-        "declaration": true,
-        "emitDeclarationOnly": true,
-        "suppressImplicitAnyIndexErrors": true,
-        "lib": [
-            "es2018",
-            "dom"
-        ],
-        "moduleResolution": "node"
-    },
-    "include": [
-        "src/lib",
-        "ts_modules/*.d.ts"
-    ],
-    "exclude": [
-        "src/lib/**/tests"
-    ]
+	"compilerOptions": {
+		"noImplicitAny": true,
+		"outDir": "build/types",
+		"module": "esnext",
+		"target": "es5",
+		"moduleResolution": "node",
+		"allowJs": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"declaration": true,
+		"emitDeclarationOnly": true,
+		"strict": true,
+		"suppressImplicitAnyIndexErrors": true,
+		"baseUrl": "src/lib",
+		"paths": {
+			"config/*": ["config/*"],
+			"controller/*": ["controller/*"],
+			"core/*": ["core/*"]
+		},
+		"lib": ["dom", "es2019"]
+	},
+	"include": ["src/lib/*", "ts_modules/*.d.ts"],
+	"exclude": ["src/lib/**/tests"]
 }

@@ -1,12 +1,10 @@
-import {Router, Result, Route} from 'uri-template-router';
-
 class TamperRequest {
 	routeName: string;
 	params: any;
 	uri: string;
 	uriTemplate: string;
-	route: Route;
-	router: Router;
+	route: Route | null;
+	router: Router | null;
 
 	constructor(result?: Result) {
 		this.routeName = result?.matchValue || '';
