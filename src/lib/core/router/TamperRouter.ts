@@ -12,10 +12,12 @@ class TamperRouter {
 	configRoutes: any;
 	controllers: TamperControllers;
 	router: Router;
+	debugMode: boolean;
 
 	constructor() {
 		this.controllers = {};
 		this.router = new Router();
+		this.debugMode = false;
 	}
 
 	init = (): void => {
@@ -27,13 +29,17 @@ class TamperRouter {
 	};
 
 	_checkRoute = (name: string, patterns: string[], action: string, debug: boolean): void => {
+		this.debugMode = (routes['debug']['url'] ?? undefined) !== undefined;
 		const url = routes['debug']['url'] ?? document.location.href;
 		let resolvedRouter: Result | undefined = undefined;
 
 		for (let r = 0; r < patterns.length; r++) {
 			this.router.addTemplate(patterns[r], {}, name);
 			resolvedRouter = this.router.resolveURI(url);
-			console.log(resolvedRouter);
+
+			if (this.debugMode) {
+				console.debug(resolvedRouter);
+			}
 
 			if (resolvedRouter) {
 				break;

@@ -7,6 +7,7 @@ declare class TamperRouter {
     configRoutes: any;
     controllers: TamperControllers;
     router: Router;
+    debugMode: boolean;
     constructor();
     init: () => void;
     _checkRoute: (name: string, patterns: string[], action: string, debug: boolean) => void;
