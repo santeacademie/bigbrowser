@@ -2,7 +2,7 @@
 // @name         @santeacademie/bigbrowser
 // @namespace    http://tampermonkey.net/
 // @version      3.1
-// @description  Big browser is not wathing you
+// @description  Big browser is not watching you
 // @source       https://github.com/santeacademie/bigbrowser
 // @author       JRK (https://github.com/jr-k)
 // @downloadURL  https://bigbrowser.santeacademie.com
