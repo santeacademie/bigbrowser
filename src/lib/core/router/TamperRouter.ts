@@ -31,16 +31,13 @@ class TamperRouter {
 	_checkRoute = (name: string, patterns: string[], action: string, debug: boolean): void => {
 		this.debugMode = (routes['debug']['url'] ?? undefined) !== undefined;
 		const url = routes['debug']['url'] ?? document.location.href;
-		const oUrl = new URL(url)
+		const oUrl = new URL(url);
 		let resolvedRouter: Result | undefined = undefined;
 
 		for (let r = 0; r < patterns.length; r++) {
 			const pattern = patterns[r];
 
-			if (
-				(pattern['protocol'] && !oUrl.protocol.match(pattern['protocol']))
-				|| (pattern['host'] && !oUrl.host.match(pattern['host']))
-			) {
+			if ((pattern['protocol'] && !oUrl.protocol.match(pattern['protocol'])) || (pattern['host'] && !oUrl.host.match(pattern['host']))) {
 				continue;
 			}
 
