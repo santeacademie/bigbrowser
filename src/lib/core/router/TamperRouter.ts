@@ -33,7 +33,7 @@ class TamperRouter {
 		for (let r = 0; r < patterns.length; r++) {
 			this.router.addTemplate(patterns[r], {}, name);
 			resolvedRouter = this.router.resolveURI(url);
-			console.log(resolvedRouter)
+			console.log(resolvedRouter);
 
 			if (resolvedRouter) {
 				break;
