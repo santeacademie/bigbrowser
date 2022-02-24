@@ -1,7 +1,7 @@
 {
 	"name": "@santeacademie/bigbrowser",
-	"version": "3.0",
-	"description": "Better browser for your own good",
+	"version": "3.1",
+	"description": "Big browser is not wathing you",
 	"main": "build/index.js",
 	"types": "build/types/index.d.ts",
 	"scripts": {
