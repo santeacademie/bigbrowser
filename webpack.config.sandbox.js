@@ -1,3 +1,5 @@
+const path = require('path');
+
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -42,6 +44,11 @@ module.exports = {
     new HtmlWebpackPlugin(),
   ],
   resolve: {
-    extensions: ['.ts', '.js', '.json']
+    extensions: ['.ts', '.js', '.json'],
+      alias: {
+          core: path.resolve(__dirname, 'src/lib/core'),
+          config: path.resolve(__dirname, 'src/lib/config'),
+          controller: path.resolve(__dirname, 'src/lib/controller'),
+      },
   }
 };

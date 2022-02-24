@@ -1,9 +1,18 @@
 {
+	"debug": {
+		"url": null
+	},
 	"routes": [
 		{
 			"name": "pipedrive_reach_counter",
 			"patterns": ["https://santeacademie.pipedrive.com{/path*}"],
 			"action": "Pipedrive:ReachCounter",
+			"debug": false
+		},
+		{
+			"name": "github_project_repository",
+			"patterns": ["https://github.com/orgs{/orgName}/projects{/projectId}{/path*}"],
+			"action": "Github:ProjectRepository",
 			"debug": false
 		}
 	]
