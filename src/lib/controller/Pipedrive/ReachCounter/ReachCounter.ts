@@ -5,6 +5,7 @@ import TamperRequest from 'core/router/TamperRequest';
 
 class ReachCounter extends TamperController {
 	loaded = false;
+	buttonAdded = false;
 	focusedFieldKey: string | undefined = undefined;
 
 	run = (request: TamperRequest): void => {
@@ -39,8 +40,6 @@ class ReachCounter extends TamperController {
 			return;
 		}
 
-		this.loaded = true;
-
 		const $body: any = $('body');
 
 		$body.on('click', 'td.gridRow__cell:not(".gridRow__cell--editing") button', (event: JQuery.ClickEvent) => {
@@ -48,9 +47,13 @@ class ReachCounter extends TamperController {
 			this.focusedFieldKey = this._grabFieldKey(/^tentative/i, $this.parents('td:eq(0)').data('field'));
 
 			if (this.focusedFieldKey) {
-				setTimeout(() => {
-					this._addButtonToPopover();
-				}, 1000);
+				setTimeout(
+					() => {
+						this._addButtonToPopover();
+						this.buttonAdded = true;
+					},
+					this.buttonAdded ? 100 : 1000
+				);
 			}
 		});
 		$body.on('click', '.sub-one-tryreach', (event: JQuery.ClickEvent) => {
@@ -63,6 +66,8 @@ class ReachCounter extends TamperController {
 
 			this._addOneTryReach($this.closest('.item'));
 		});
+
+		this.loaded = true;
 	};
 
 	_addButtonToPopover = (): void => {
