@@ -16,6 +16,18 @@
 			"debug": false
 		},
 		{
+			"name": "pipedrive_backstage_tools",
+			"patterns": [
+				{
+					"protocol": "https",
+					"host": "santeacademie.pipedrive.com",
+					"pattern": "https://santeacademie.pipedrive.com/person{/personId}{/path*}"
+				}
+			],
+			"action": "Pipedrive:BackstageTools",
+			"debug": false
+		},
+		{
 			"name": "github_project_repository",
 			"patterns": [
 				{
