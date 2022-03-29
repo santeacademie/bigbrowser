@@ -34,7 +34,14 @@ class BackstageTools extends TamperController {
 			(elementMarker: ElementMarkerCallback) => {
 				elementMarker($(anchor).eq(0)[0]);
 				let syncUrl = 'https://backstage.santeacademie.com/customer/contact/connector-sync/pipedrive/__email__';
-				syncUrl = syncUrl.replace('__email__', $('[data-test=email-label]').eq(0).text().trim().replace(/(.+)\((.+)\)/, "$1"));
+				syncUrl = syncUrl.replace(
+					'__email__',
+					$('[data-test=email-label]')
+						.eq(0)
+						.text()
+						.trim()
+						.replace(/(.+)\((.+)\)/, '$1')
+				);
 				$(anchor).prepend('<div class="columnTitle"><a href="javascript:void(0);" class="stealth-popup-opener" data-url="' + syncUrl + '">Synchroniser depuis Backstage</a></div>');
 			},
 			500
