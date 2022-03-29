@@ -13,15 +13,17 @@ class WaiterScheduler {
 
 	_startWaitLoop = (): NodeJS.Timeout => {
 		return setInterval(() => {
-			if (this.waiterState.checker()) {
-				this.waiterState.resolver();
-				clearInterval(this.waiterInterval);
+			if (!this.waiterState.checker()) {
+				return;
 			}
+
+			this.waiterState.resolver();
+			clearInterval(this.waiterInterval);
 		}, this.ms);
 	};
 
-	waitForChecker = (isReadyCallback: () => boolean): Promise<void> => {
-		this.waiterState.checker = isReadyCallback;
+	waitForChecker = (readyCallback: () => boolean): Promise<void> => {
+		this.waiterState.checker = readyCallback;
 
 		return new Promise<void>((resolve) => {
 			this.waiterState.resolver = resolve;

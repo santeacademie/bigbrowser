@@ -2,6 +2,7 @@ import $ from 'jquery';
 
 import TamperController from 'core/controller/TamperController';
 import TamperRequest from 'core/router/TamperRequest';
+import {ElementMarkerCallback} from '../../../core/presence/PresenceState';
 
 class BackstageTools extends TamperController {
 	run = (request: TamperRequest): void => {
@@ -22,19 +23,22 @@ class BackstageTools extends TamperController {
 	};
 
 	personSyncAction = () => {
-		const anchor = '.widget.personFields.fieldsView';
+		const checkKey = 'personSyncAction';
+		const anchor = '.widget.personFields.fieldsView:visible';
 
-		this.waitFor(() => {
-			return $(anchor).length !== 0;
-		}, 100).then(() => {
-			let syncUrl = 'https://backstage.santeacademie.com/customer/contact/connector-sync/pipedrive/__email__';
-			syncUrl = syncUrl.replace('__email__', $('[data-test=email-label]').eq(0).text().trim());
-			$(anchor).prepend(
-				'<div class="columnTitle"><a href="javascript:void(0);" class="stealth-popup-opener" data-url="' +
-					syncUrl +
-					'">Synchroniser avec Backstage</a></div>'
-			);
-		});
+		this.checkFor(
+			checkKey,
+			() => {
+				return $(anchor).length !== 0;
+			},
+			(elementMarker: ElementMarkerCallback) => {
+				elementMarker($(anchor).eq(0)[0]);
+				let syncUrl = 'https://backstage.santeacademie.com/customer/contact/connector-sync/pipedrive/__email__';
+				syncUrl = syncUrl.replace('__email__', $('[data-test=email-label]').eq(0).text().trim());
+				$(anchor).prepend('<div class="columnTitle"><a href="javascript:void(0);" class="stealth-popup-opener" data-url="' + syncUrl + '">Synchroniser depuis Backstage</a></div>');
+			},
+			500
+		);
 	};
 }
 

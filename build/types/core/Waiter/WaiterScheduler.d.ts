@@ -6,6 +6,6 @@ declare class WaiterScheduler {
     waiterInterval: NodeJS.Timeout;
     constructor(ms?: number);
     _startWaitLoop: () => NodeJS.Timeout;
-    waitForChecker: (isReadyCallback: () => boolean) => Promise<void>;
+    waitForChecker: (readyCallback: () => boolean) => Promise<void>;
 }
 export default WaiterScheduler;
