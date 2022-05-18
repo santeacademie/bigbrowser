@@ -8,5 +8,5 @@ class ProjectRepository extends TamperController {
 		}
 	};
 }
-// ggg
+
 export default ProjectRepository;
