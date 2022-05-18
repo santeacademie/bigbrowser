@@ -29,7 +29,7 @@ jobs:
           git reset --hard
           git config --local --list
           git checkout master
-          git config user.email "tagadabot@santeacademie.com"
+          git config user.email "tech@santeacademie.com"
           git config user.name "tagadabot"
 
       - name: Bump version
