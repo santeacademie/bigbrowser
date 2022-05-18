@@ -35,6 +35,7 @@ jobs:
           npm run build
           git add . || true
           git commit -m "Build update" || true
+	  git pull
           git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
         env:
           GITHUB_TOKEN: ${{secrets.TAGADABOT_READ_TOKEN}}
