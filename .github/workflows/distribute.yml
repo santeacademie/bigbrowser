@@ -8,6 +8,9 @@ on:
       - README.md
       - .gitignore
       - .github/**
+      - build/**
+      - package-lock.json
+      - package.json
 
 jobs:
   publish:
