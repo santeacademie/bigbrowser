@@ -37,7 +37,7 @@ jobs:
           git commit -m "Build update" || true
 	  git pull
           git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
-	  curl https://bigbrowser.santeacademie.com/update.php
+          curl https://bigbrowser.santeacademie.com/update.php
         env:
           GITHUB_TOKEN: ${{secrets.TAGADABOT_READ_TOKEN}}
 
