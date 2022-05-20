@@ -1,6 +1,6 @@
 {
 	"debug": {
-		"url": null
+		"url": "https://app.asana.com/0/1201126223006976/list"
 	},
 	"routes": [
 		{
@@ -25,6 +25,18 @@
 				}
 			],
 			"action": "Pipedrive:BackstageTools",
+			"debug": false
+		},
+		{
+			"name": "asana_roadmap_produit_tools",
+			"patterns": [
+				{
+					"protocol": "https",
+					"host": "app.asana.com",
+					"pattern": "https://app.asana.com/0/1201126223006976/list{/path*}"
+				}
+			],
+			"action": "Asana:RoadmapProduitTools",
 			"debug": false
 		},
 		{
