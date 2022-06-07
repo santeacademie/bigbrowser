@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         @santeacademie/bigbrowser
 // @namespace    http://tampermonkey.net/
-// @version      3.7.27
+// @version      3.7.28
 // @description  Big browser is not watching you
 // @source       https://github.com/santeacademie/bigbrowser
 // @author       JRK (https://github.com/jr-k)
