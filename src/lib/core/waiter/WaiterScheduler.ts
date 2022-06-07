@@ -25,7 +25,7 @@ class WaiterScheduler {
 	waitForChecker = (readyCallback: () => boolean): Promise<void> => {
 		this.waiterState.checker = readyCallback;
 
-		return new Promise<void>((resolve) => {
+		return new Promise<void>((resolve: () => void) => {
 			this.waiterState.resolver = resolve;
 		});
 	};

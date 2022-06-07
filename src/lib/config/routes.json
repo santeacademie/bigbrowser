@@ -28,7 +28,7 @@
 			"debug": false
 		},
 		{
-			"name": "asana_roadmap_produit_tools",
+			"name": "asana_backlog_produit_tools",
 			"patterns": [
 				{
 					"protocol": "https",
@@ -36,7 +36,7 @@
 					"pattern": "https://app.asana.com/0/1201126223006976/list{/path*}"
 				}
 			],
-			"action": "Asana:RoadmapProduitTools",
+			"action": "Asana:BacklogProduitTools",
 			"debug": false
 		},
 		{
