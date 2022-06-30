@@ -1,7 +1,4 @@
 /// <reference types="node" />
-/// <reference types="node" />
-/// <reference types="node" />
-/// <reference types="node" />
 import WaiterState from './WaiterState';
 declare class WaiterScheduler {
     ms: number;

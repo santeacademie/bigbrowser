@@ -1,7 +1,4 @@
 /// <reference types="node" />
-/// <reference types="node" />
-/// <reference types="node" />
-/// <reference types="node" />
 import PresenceState, { ElementMarkerCallback } from './PresenceState';
 import PresencePayloadInterface from 'core/presence/PresencePayloadInterface';
 declare class PresenceScheduler {
