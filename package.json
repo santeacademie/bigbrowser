@@ -1,6 +1,6 @@
 {
 	"name": "@santeacademie/bigbrowser",
-	"version": "3.7.30",
+	"version": "3.7.31",
 	"description": "Big browser is not watching you",
 	"main": "build/index.js",
 	"types": "build/types/index.d.ts",
