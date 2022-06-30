@@ -41,15 +41,24 @@ class TamperRouter {
 				continue;
 			}
 
-			this.router.addTemplate(pattern['pattern'], {}, name);
-			resolvedRouter = this.router.resolveURI(url);
+			try {
+				this.router.addTemplate(pattern['pattern'], {}, name);
+				resolvedRouter = this.router.resolveURI(url);
 
-			if (this.debugMode) {
-				console.debug(resolvedRouter);
-			}
+				if (this.debugMode) {
+					console.debug(resolvedRouter);
+				}
 
-			if (resolvedRouter) {
-				break;
+				if (resolvedRouter) {
+					resolvedRouter.matchValue = name;
+					break;
+				}
+			} catch (error: any) {
+				if (error.message === 'Route already defined') {
+					// pass
+				} else {
+					throw error;
+				}
 			}
 		}
 

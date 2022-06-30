@@ -1,4 +1,4 @@
 export enum WssqlRemoteDatabase {
 	ContentStudio = 'CONTENTSTUDIO',
-	Backstage = 'BACKSTAGE'
+	Backstage = 'BACKSTAGE',
 }

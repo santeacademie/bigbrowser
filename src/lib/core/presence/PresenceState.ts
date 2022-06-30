@@ -1,12 +1,18 @@
+import PresencePayloadInterface from 'core/presence/PresencePayloadInterface';
+
 export type ElementMarkerCallback = (element: HTMLElement) => void;
 
 class PresenceState {
 	checker: () => boolean;
-	processor: (elementMarkerCallback: ElementMarkerCallback) => void;
+	processor: (elementMarkerCallback: ElementMarkerCallback) => PresencePayloadInterface | null;
 
-	constructor(checker?: () => boolean, processor?: (elementMarkerCallback: ElementMarkerCallback) => void) {
+	constructor(checker?: () => boolean, processor?: (elementMarkerCallback: ElementMarkerCallback) => PresencePayloadInterface | null) {
 		this.checker = checker || (() => true);
-		this.processor = processor || (() => {});
+		this.processor =
+			processor ||
+			(() => {
+				return null;
+			});
 	}
 }
 

@@ -3,11 +3,12 @@ import $ from 'jquery';
 import TamperController from 'core/controller/TamperController';
 import TamperRequest from 'core/router/TamperRequest';
 import {ElementMarkerCallback} from 'core/presence/PresenceState';
+import PresencePayloadInterface from 'core/presence/PresencePayloadInterface';
 
 class BackstageTools extends TamperController {
 	run = (request: TamperRequest): void => {
 		this.stealthPopupListener();
-		this.personSyncAction();
+		this.personSyncAction(request);
 	};
 
 	stealthPopupListener = (ms?: number) => {
@@ -22,8 +23,8 @@ class BackstageTools extends TamperController {
 		});
 	};
 
-	personSyncAction = () => {
-		const checkKey = 'personSyncAction';
+	personSyncAction = (request: TamperRequest) => {
+		const checkKey = `${request.routeName}_personSyncAction`;
 		const anchor = '.widget.personFields.fieldsView:visible';
 
 		this.checkFor(
@@ -31,7 +32,7 @@ class BackstageTools extends TamperController {
 			() => {
 				return $(anchor).length !== 0;
 			},
-			(elementMarker: ElementMarkerCallback) => {
+			(elementMarker: ElementMarkerCallback): PresencePayloadInterface | null => {
 				elementMarker($(anchor).eq(0)[0]);
 				let syncUrl = 'https://backstage.santeacademie.com/customer/contact/connector-sync/pipedrive/__email__';
 				syncUrl = syncUrl.replace(
@@ -43,6 +44,8 @@ class BackstageTools extends TamperController {
 						.replace(/(.+)\((.+)\)/, '$1')
 				);
 				$(anchor).prepend('<div class="columnTitle"><a href="javascript:void(0);" class="stealth-popup-opener" data-url="' + syncUrl + '">Synchroniser depuis Backstage</a></div>');
+
+				return null;
 			},
 			500
 		);
