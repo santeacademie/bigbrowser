@@ -9,9 +9,9 @@
 		"build": "webpack && tsc",
 		"build:sandbox": "webpack --config webpack.config.sandbox.js",
 		"test": "jest --silent --env=jsdom",
-		"coverage": "npm run test -- --coverage",
-		"prepare": "npm run build",
-		"trypublish": "npm publish || true"
+		"coverage": "yarn run test -- --coverage",
+		"prepare": "yarn run build",
+		"trypublish": "yarn publish || true"
 	},
 	"repository": {
 		"type": "git",
