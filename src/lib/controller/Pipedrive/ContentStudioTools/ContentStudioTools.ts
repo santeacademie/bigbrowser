@@ -5,6 +5,7 @@ import {WssqlRemoteDatabase} from 'core/wssql/WssqlRemoteDatabase';
 import {ElementMarkerCallback} from 'core/presence/PresenceState';
 import PresencePayloadInterface from 'core/presence/PresencePayloadInterface';
 import $ from 'jquery';
+import {secondsToHHMMSS} from '../../../util/time';
 
 interface DealCheckPayload extends PresencePayloadInterface {
 	email: string;
@@ -27,6 +28,14 @@ class ContentStudioTools extends TamperController {
 			.eq(0)
 			.parents('.editable')
 			.find('.value');
+	};
+
+	getBadgeValueView = (id: string, value: any): string => {
+		return `
+			<div id="${id}" style="font-weight:bold;color: white; max-height: 16px; display: flex; margin-top:3px; margin-bottom: 8px; max-width: max-content; flex-direction: row; justify-content: center; align-items: end; text-align: center; border-radius: 20px; font-size: 12px; padding: 2px 15px;background: rgb(141,71,222);background: linear-gradient(196deg, rgba(141,71,222,1) 0%, rgba(111,101,255,1) 100%);">
+				${value}
+			</div>
+		`.trim();
 	};
 
 	dealSyncAction = (request: TamperRequest) => {
@@ -61,7 +70,7 @@ class ContentStudioTools extends TamperController {
 				this.csBridge
 					.getRowSingleOrNull(
 						`
-					SELECT r.redundant_progression as progression FROM contentstudio.cs_registration r
+					SELECT r.redundant_time_spent as timespent, date(r.redundant_last_connection) as lastconn, r.redundant_progression as progression FROM contentstudio.cs_registration r
 					LEFT JOIN contentstudio.cs_learner l ON l.id = r.learner_id
 					LEFT JOIN contentstudio.cs_session s ON s.id = r.session_id
 					WHERE l.email = '${dealCheckPayload.email}' and s.code = '${dealCheckPayload.session}'`
@@ -70,18 +79,34 @@ class ContentStudioTools extends TamperController {
 						if (!result) {
 							return;
 						}
+
 						const progression: number = parseFloat(result['progression']);
-						const $anchorProgression = this.getCustomFieldValueElementByName('Pourcentage de progression');
-						const $progression = `<div id="${
-							request.routeName
-						}_progression" style="font-weight:bold;color: white; margin-left: 10px; display: inline-block; text-align: center; border-radius: 20px; font-size: 12px; padding: 2px 15px;background: rgb(141,71,222);background: linear-gradient(196deg, rgba(141,71,222,1) 0%, rgba(111,101,255,1) 100%);">${Math.ceil(
-							parseFloat(progression.toFixed(2)) * 100
-						)} %</div>`;
-						$anchorProgression.html($anchorProgression.html() + $progression);
+						const timespent: number = parseFloat(result['timespent']);
+						const lastconn: string = result['lastconn'];
+
+						this.getCustomFieldValueElementByName('Pourcentage de progression').append(this.getBadgeValueView(`${request.routeName}_progression`, `${parseFloat(progression.toFixed(2)) * 100} %`));
+
+						this.getCustomFieldValueElementByName('Temps passé').append(
+							this.getBadgeValueView(
+								`${request.routeName}_timespent`,
+								`${secondsToHHMMSS({
+									seconds: timespent,
+									hideHourIfZero: false,
+									hideMinuteIfZero: false,
+									hideSecondIfZero: false,
+									noLeadingZeroMinuteIfHeader: false,
+									noLeadingZeroSecondIfHeader: false,
+								})}`
+							)
+						);
+
+						this.getCustomFieldValueElementByName('Dernière Connexion').append(this.getBadgeValueView(`${request.routeName}_lastconn`, `${lastconn}`));
 					});
 			},
 			(dealCheckPayload: DealCheckPayload) => {
 				$(`#${request.routeName}_progression`).remove();
+				$(`#${request.routeName}_timespent`).remove();
+				$(`#${request.routeName}_lastconn`).remove();
 			}
 		);
 	};
