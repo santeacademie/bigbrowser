@@ -40,6 +40,8 @@ jobs:
           git add . || true
           git commit -m "Build update" || true
           git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
+          git checkout develop && git merge master
+          git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
           curl https://bigbrowser.santeacademie.com/update.php
         env:
           GITHUB_TOKEN: ${{secrets.TAGADABOT_READ_TOKEN}}
