@@ -9,9 +9,9 @@
 		"build": "webpack && tsc",
 		"build:sandbox": "webpack --config webpack.config.sandbox.js",
 		"test": "jest --silent --env=jsdom",
-		"coverage": "npm run test -- --coverage",
-		"prepare": "npm run build",
-		"trypublish": "npm publish || true"
+		"coverage": "yarn run test -- --coverage",
+		"prepare": "yarn run build",
+		"trypublish": "yarn publish || true"
 	},
 	"repository": {
 		"type": "git",
@@ -78,6 +78,6 @@
 	"dependencies": {
 		"jquery": "^3.6.0",
 		"md5": "^2.3.0",
-		"uri-template-router": "^0.0.12"
+		"uri-template-router": "^0.0.14"
 	}
 }
