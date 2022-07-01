@@ -9,9 +9,9 @@
 		"build": "webpack && tsc",
 		"build:sandbox": "webpack --config webpack.config.sandbox.js",
 		"test": "jest --silent --env=jsdom",
-		"coverage": "npm run test -- --coverage",
-		"prepare": "npm run build",
-		"trypublish": "npm publish || true"
+		"coverage": "yarn run test -- --coverage",
+		"prepare": "yarn run build",
+		"trypublish": "yarn publish || true"
 	},
 	"repository": {
 		"type": "git",
@@ -48,7 +48,7 @@
 		"url-loader": "^4.1.1",
 		"webpack": "^5.69.0",
 		"webpack-cli": "^4.9.2",
-		"webpack-dev-server": "4.7.4"
+		"webpack-dev-server": "4.9.3"
 	},
 	"jest": {
 		"moduleNameMapper": {
