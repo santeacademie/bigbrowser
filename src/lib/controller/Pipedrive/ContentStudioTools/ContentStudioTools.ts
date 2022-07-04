@@ -20,7 +20,7 @@ class ContentStudioTools extends TamperController {
 		this.dealSyncAction(request);
 	};
 
-	getCustomFieldValueElementByName = (label: string) => {
+	getCustomFieldValueElementByName = (label: string): JQuery => {
 		return $('[data-test=field-label]:visible')
 			.filter(function () {
 				return $(this).text().trim() == label;
@@ -37,6 +37,18 @@ class ContentStudioTools extends TamperController {
 			</div>
 		`.trim();
 	};
+
+	editCustomFieldValueElementByName = (label: string, editCallback: ((input: JQuery) => void)): void => {
+		let $itemContainer: JQuery = $(`[data-field-key=${label}] .item`);
+
+		if ($itemContainer.length === 0) {
+			$itemContainer = this.getCustomFieldValueElementByName(label).parents('.item')
+		}
+
+		$itemContainer.find('.edit').click();
+		editCallback($itemContainer.find('.input').find('input,select,textarea'));
+		$itemContainer.find('.save *').click();
+	}
 
 	dealSyncAction = (request: TamperRequest) => {
 		const checkKey = `${request.routeName}_dealSyncAction`;
