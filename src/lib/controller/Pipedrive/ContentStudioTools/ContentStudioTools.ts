@@ -84,7 +84,7 @@ class ContentStudioTools extends TamperController {
 						const timespent: number = parseFloat(result['timespent']);
 						const lastconn: string = result['lastconn'];
 
-						this.getCustomFieldValueElementByName('Pourcentage de progression').append(this.getBadgeValueView(`${request.routeName}_progression`, `${parseFloat(progression.toFixed(2)) * 100} %`));
+						this.getCustomFieldValueElementByName('Pourcentage de progression').append(this.getBadgeValueView(`${request.routeName}_progression`, `${Math.floor(parseFloat(progression.toFixed(2)) * 100)} %`));
 
 						this.getCustomFieldValueElementByName('Temps passé').append(
 							this.getBadgeValueView(
