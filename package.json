@@ -56,7 +56,8 @@
 			"\\.(css|less)$": "<rootDir>/scripts/testMock.js",
 			"^core/(.*)$": "<rootDir>/src/lib/core/$1",
 			"^config/(.*)$": "<rootDir>/src/lib/config/$1",
-			"^controller/(.*)$": "<rootDir>/src/lib/controller/$1"
+			"^controller/(.*)$": "<rootDir>/src/lib/controller/$1",
+			"^util/(.*)$": "<rootDir>/src/lib/util/$1"
 		},
 		"moduleFileExtensions": [
 			"web.js",
