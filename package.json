@@ -79,6 +79,6 @@
 	"dependencies": {
 		"jquery": "^3.6.0",
 		"md5": "^2.3.0",
-		"uri-template-router": "^0.0.12"
+		"uri-template-router": "^0.0.16"
 	}
 }

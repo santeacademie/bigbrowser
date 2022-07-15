@@ -6267,10 +6267,10 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
-uri-template-router@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/uri-template-router/-/uri-template-router-0.0.12.tgz#92f208e3cc9d7316a38bcb1a45353d46aaa0060f"
-  integrity sha512-dQjPm9S+WsvqAaSPl8OpxlWKipyTVIiW/2C91wixyfDXUqpCKMMus4NmxnK1XKTKvhHHfCo9gkjSi55Osq4C4A==
+uri-template-router@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/uri-template-router/-/uri-template-router-0.0.16.tgz#f78b54c98d710034557e46b7604b13b96e75162b"
+  integrity sha512-kvIuR8BtfL/VXFCM5hA7kjfYBdxMKQMmjOOA2zPUR1Xy7K+aVF2cVWMDaQEa2O74WN7zMloyvvmYjNJ38fVUew==
 
 url-loader@^4.1.1:
   version "4.1.1"
