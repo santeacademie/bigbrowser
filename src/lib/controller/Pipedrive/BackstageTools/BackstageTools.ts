@@ -43,6 +43,7 @@ class BackstageTools extends TamperController {
 						.trim()
 						.replace(/(.+)\((.+)\)/, '$1')
 				);
+
 				$(anchor).prepend('<div class="columnTitle"><a href="javascript:void(0);" class="stealth-popup-opener" data-url="' + syncUrl + '">Synchroniser depuis Backstage</a></div>');
 
 				return null;

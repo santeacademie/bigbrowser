@@ -46,6 +46,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js', '.json'],
       alias: {
+          util: path.resolve(__dirname, 'src/lib/util'),
           core: path.resolve(__dirname, 'src/lib/core'),
           config: path.resolve(__dirname, 'src/lib/config'),
           controller: path.resolve(__dirname, 'src/lib/controller'),
