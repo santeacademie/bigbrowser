@@ -28,18 +28,6 @@
 			"debug": false
 		},
 		{
-			"name": "asana_backlog_produit_tools",
-			"patterns": [
-				{
-					"protocol": "https",
-					"host": "app.asana.com",
-					"pattern": "https://app.asana.com/0/1201126223006976/list{/path*}"
-				}
-			],
-			"action": "Asana:BacklogProduitTools",
-			"debug": false
-		},
-		{
 			"name": "pipedrive_contentstudio_tools",
 			"patterns": [
 				{
@@ -57,7 +45,7 @@
 				{
 					"protocol": "https",
 					"host": "github.com",
-					"pattern": "https://santeacademie.pipedrive.com{/path*}"
+					"pattern": "https://github.com/orgs{/orgName}/projects{/projectId}{/path*}"
 				}
 			],
 			"action": "Github:ProjectRepository",
