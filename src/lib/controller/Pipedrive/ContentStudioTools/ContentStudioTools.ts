@@ -21,15 +21,17 @@ class ContentStudioTools extends TamperController {
 
 	run = (request: TamperRequest): void => {
 		this.controllerKey = request.routeName;
+
 		this.csBridge = WssqlBridge.connect(WssqlRemoteDatabase.ContentStudio);
 		this.bsBridge = WssqlBridge.connect(WssqlRemoteDatabase.Backstage);
+
 		this.dealSyncAction(request);
 	};
 
 	dealSyncAction = (request: TamperRequest) => {
 		const checkKey = `${this.controllerKey}_dealSyncAction`;
 		const getAnchorEmail = () => {
-			return $('[data-test=email-label]:visible').eq(0);
+			return PipedriveHelper.getCustomFieldValueElementByName('E-mail').find('a').first();
 		};
 		const getAnchorSession = () => {
 			return PipedriveHelper.getCustomFieldValueElementByName('Session');
@@ -38,7 +40,7 @@ class ContentStudioTools extends TamperController {
 		this.checkFor(
 			checkKey,
 			() => {
-				return getAnchorSession().length !== 0 && getAnchorEmail().length !== 0 && document.location.href.match('/deal/');
+				return getAnchorEmail().text().trim() !== '' && getAnchorSession().text().trim() !== '' && document.location.href.match('/deal/');
 			},
 			(elementMarker: ElementMarkerCallback): DealCheckPayload => {
 				const $anchorEmail = getAnchorEmail();
