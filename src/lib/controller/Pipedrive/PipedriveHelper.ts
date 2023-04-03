@@ -2,13 +2,14 @@ import $ from 'jquery';
 
 class PipedriveHelper {
 	static getCustomFieldValueElementByName = (label: string): JQuery => {
-		return $('[data-test=field-label]:visible')
+		return $('[data-testid=field-name]:visible')
 			.filter(function () {
 				return $(this).text().trim() == label;
 			})
-			.eq(0)
-			.parents('.editable')
-			.find('.value');
+			.first()
+			.parents('[data-testid=fields-list-row]')
+			.find('[data-testid=fields-list-row-field-components] div')
+			.first();
 	};
 
 	static getBadgeValueView = (id: string, value: any): string => {
